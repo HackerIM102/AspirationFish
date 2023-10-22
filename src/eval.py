@@ -1,6 +1,4 @@
 import chess
-import chess.svg
-from IPython.display import SVG, display
 import time
 class Evaluation:
         def evaluate_board(self, board):
