@@ -11,9 +11,14 @@ It i a simple command-line program where you can play chess against AspirationFi
 [.] PRINCIPLE VARIATION SEARCH <br />
 
 # How to use
+Note that python must be installed first
 Download all necessary dependacies using
 ```python
 pip install -r requirements.txt
 ```
-
+Then run main.py using
+```python
+python ../../main.py
+```
+replace ".." withe the directory where main.py is located in
 ![img](/img/aspirationfishv2.PNG)
