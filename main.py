@@ -2,10 +2,11 @@ import chess
 import chess.svg
 from IPython.display import SVG, display
 import time
+from eval import Evaluation
 
 def minimax(board, depth, alpha, beta, maximizing_player):
     if depth == 0 or board.is_game_over():
-        eval = evaluate_board(board)
+        eval = evaluator.evaluate_board(board)
         print(eval, end="\r")  # Print the current evaluation on the same line
         return eval
 
@@ -44,8 +45,6 @@ def minimax(board, depth, alpha, beta, maximizing_player):
                 break
         return min_eval
 
-
-
 def get_best_move(board, depth):
     best_move = None
     max_eval = float('-inf')
@@ -65,8 +64,6 @@ def get_best_move(board, depth):
                 break
     print("Current best evaluation:", max_eval)  # Print the current best evaluation
     return best_move
-
-
 
 def display_board(board):
     svg = chess.svg.board(board=board, size=300)
@@ -124,4 +121,8 @@ $$/   $$/$$$$$$$/ $$$$$$$/ $$/$$/      $$$$$$$/   $$$$/ $$/ $$$$$$/ $$/   $$/$$/
     else:
         print("It's a draw!")
 
+# Create an instance of the Evaluation class
+evaluator = Evaluation()
+
+# Call the play_chess function to start the game
 play_chess()
