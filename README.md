@@ -23,7 +23,7 @@ python ../src/main.py
 replace ".." withe the directory where main.py is located in
 # Launching
 ![launch](/img/aspirationfishv2.PNG)
-# Playing a game
+# Playing a game (will be in ascii notation)
 ![play](/img/playagame.PNG)
 
 # Built with google colaboratory
