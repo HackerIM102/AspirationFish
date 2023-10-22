@@ -1,3 +1,5 @@
+import chess
+import chess.svg
 class Evaluation:
         def evaluate_board(self, board):
             piece_values_midgame = {
