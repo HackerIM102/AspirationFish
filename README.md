@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ```
 Then run main.py using
 ```python
-python ../../main.py
+python ../src/main.py
 ```
 replace ".." withe the directory where main.py is located in
 # Launching
