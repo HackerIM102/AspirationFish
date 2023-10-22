@@ -1,6 +1,4 @@
 import chess
-import chess.svg
-from IPython.display import SVG, display
 import time
 from eval import Evaluation
 
@@ -66,34 +64,10 @@ def get_best_move(board, depth):
     return best_move
 
 def display_board(board):
-    svg = chess.svg.board(board=board, size=300)
-    display(SVG(svg))
+    print(board)
 
 def play_chess():
     board = chess.Board()
-    print('\n')
-    print(r"""                                        
-  ______                    __                    __     __                   ________ __          __       
- /      \                  /  |                  /  |   /  |                 /        /  |        /  |      
-/$$$$$$  | _______  ______ $$/  ______  ______  _$$ |_  $$/  ______  _______ $$$$$$$$/$$/  _______$$ |____  
-$$ |__$$ |/       |/      \/  |/      \/      \/ $$   | /  |/      \/       \$$ |__   /  |/       $$      \ 
-$$    $$ /$$$$$$$//$$$$$$  $$ /$$$$$$  $$$$$$  $$$$$$/  $$ /$$$$$$  $$$$$$$  $$    |  $$ /$$$$$$$/$$$$$$$  |
-$$$$$$$$ $$      \$$ |  $$ $$ $$ |  $$//    $$ | $$ | __$$ $$ |  $$ $$ |  $$ $$$$$/   $$ $$      \$$ |  $$ |
-$$ |  $$ |$$$$$$  $$ |__$$ $$ $$ |    /$$$$$$$ | $$ |/  $$ $$ \__$$ $$ |  $$ $$ |     $$ |$$$$$$  $$ |  $$ |
-$$ |  $$ /     $$/$$    $$/$$ $$ |    $$    $$ | $$  $$/$$ $$    $$/$$ |  $$ $$ |     $$ /     $$/$$ |  $$ |
-$$/   $$/$$$$$$$/ $$$$$$$/ $$/$$/      $$$$$$$/   $$$$/ $$/ $$$$$$/ $$/   $$/$$/      $$/$$$$$$$/ $$/   $$/ 
-                  $$ |                                                                                      
-                  $$ |                V1                                                                      
-                  $$/                   
-                                                                                                                                          
-[.] MINIMAX [DEPTH 4]  
-[.] ALPHA-BETA PRUNING
-[.] PIECE SQUARE TABLES
-[.] PESTO'S EVALUATION FUNCTION
-[.] ASPIRATION WINDOW
-[.] PRINCIPLE VARIATION SEARCH
-
-        """)
     while not board.is_game_over():
         display_board(board)
         if board.turn == chess.WHITE:
