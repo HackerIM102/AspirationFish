@@ -1,0 +1,3 @@
+chess
+ipython
+python-chess
