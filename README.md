@@ -21,9 +21,9 @@ Then run main.py using
 python ../../main.py
 ```
 replace ".." withe the directory where main.py is located in
-# When it launches, it should look like this
+# Launching
 ![launch](/img/aspirationfishv2.PNG)
-Playing a game:
+# Playing a game
 ![play](/img/playagame.PNG)
 
 # Built with google colaboratory
