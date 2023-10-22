@@ -21,5 +21,5 @@ Then run main.py using
 python ../../main.py
 ```
 replace ".." withe the directory where main.py is located in
-<br />
+# When it launches, it should look like this
 ![img](/img/aspirationfishv2.PNG)
