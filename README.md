@@ -16,9 +16,13 @@ Download all necessary dependacies using
 ```python
 pip install -r requirements.txt
 ```
-Then run main.py using
+Then run main.py using for version 1
 ```python
-python ../src/main.py
+python ../src/v1/main.py
+```
+For beta version (under development) [best of all versions]
+```python
+python ../src/beta/[NAME OF MODEL].py
 ```
 replace ".." withe the directory where main.py is located in
 # Launching
