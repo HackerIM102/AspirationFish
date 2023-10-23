@@ -88,7 +88,6 @@ $$/   $$/$$$$$$$/ $$$$$$$/ $$/$$/      $$$$$$$/   $$$$/ $$/ $$$$$$/ $$/   $$/$$/
 [.] PIECE SQUARE TABLES
 [.] PESTO'S EVALUATION FUNCTION
 [.] ASPIRATION WINDOW
-[.] PRINCIPLE VARIATION SEARCH
 
         """)
     while not board.is_game_over():
