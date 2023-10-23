@@ -95,6 +95,33 @@ def display_board(board):
 
 def play_chess():
     board = chess.Board()
+    print('\n')
+    print(r"""
+  ______                    __                    __     __                   ________ __          __
+ /      \                  /  |                  /  |   /  |                 /        /  |        /  |
+/$$$$$$  | _______  ______ $$/  ______  ______  _$$ |_  $$/  ______  _______ $$$$$$$$/$$/  _______$$ |____
+$$ |__$$ |/       |/      \/  |/      \/      \/ $$   | /  |/      \/       \$$ |__   /  |/       $$      \
+$$    $$ /$$$$$$$//$$$$$$  $$ /$$$$$$  $$$$$$  $$$$$$/  $$ /$$$$$$  $$$$$$$  $$    |  $$ /$$$$$$$/$$$$$$$  |
+$$$$$$$$ $$      \$$ |  $$ $$ $$ |  $$//    $$ | $$ | __$$ $$ |  $$ $$ |  $$ $$$$$/   $$ $$      \$$ |  $$ |
+$$ |  $$ |$$$$$$  $$ |__$$ $$ $$ |    /$$$$$$$ | $$ |/  $$ $$ \__$$ $$ |  $$ $$ |     $$ |$$$$$$  $$ |  $$ |
+$$ |  $$ /     $$/$$    $$/$$ $$ |    $$    $$ | $$  $$/$$ $$    $$/$$ |  $$ $$ |     $$ /     $$/$$ |  $$ |
+$$/   $$/$$$$$$$/ $$$$$$$/ $$/$$/      $$$$$$$/   $$$$/ $$/ $$$$$$/ $$/   $$/$$/      $$/$$$$$$$/ $$/   $$/
+                  $$ |
+                  $$ |                Fast1 BETA
+                  $$/
+
+[.] MINIMAX [DEPTH 4]
+[.] ALPHA-BETA PRUNING
+[.] PIECE SQUARE TABLES
+[.] PESTO'S EVALUATION FUNCTION
+[.] ASPIRATION WINDOW
+[.] PRINCIPLE VARIATION SEARCH
+[.] LATE MOVE REDUCTION
+[.] NULL MOVE PRUNING
+[.] TRANSPOSITION TABLES
+[.] MOVE ORDERING [KILLER MOVE HEURISTIC]
+
+        """)
     while not board.is_game_over():
         display_board(board)
         if board.turn == chess.WHITE:
