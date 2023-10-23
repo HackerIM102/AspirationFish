@@ -245,49 +245,15 @@ class Evaluation:
                   score -= 80 * pawn_count
                 else:
                   score += 80 * pawn_count
+              
+                tempo = -10 if board.turn == chess.WHITE else 10
+                score += tempo
+
+                # Evaluate pawn structure
+                white_pawns = board.pieces(chess.PAWN, chess.WHITE)
+                black_pawns = board.pieces(chess.PAWN, chess.BLACK)
+                white_pawn_structure = sum(mg_pawn_table[square] for square in white_pawns)
+                black_pawn_structure = sum(mg_pawn_table[chess.square_mirror(square)] for square in black_pawns)
+                score += white_pawn_structure - black_pawn_structure
             
-            king_square = board.king(board.turn)
-
-            # Evaluate pawn cover near the king
-            pawn_cover_score = sum(1 for square in board.pawn_attacks(board.turn, king_square) if board.piece_type_at(square) == chess.PAWN)
-            if board.turn == chess.WHITE:
-                score -= pawn_cover_score * 10
-            else:
-                score += pawn_cover_score * 10
-
-            # Evaluate open files near the king
-            open_files_score = sum(1 for file in chess.FILE_NAMES if board.is_file_open(file) and file in chess.square_file(king_square))
-            if board.turn == chess.WHITE:
-                score -= open_files_score * 20
-            else:
-                score += open_files_score * 20
-
-            # Evaluate presence of attacking pieces near the king
-            attacking_pieces_score = sum(1 for square in board.attackers(not board.turn, king_square))
-            if board.turn == chess.WHITE:
-                score += attacking_pieces_score * 30
-            else:
-                score -= attacking_pieces_score * 30
-            
-            # Evaluate isolated pawns
-            isolated_pawns_score = sum(1 for square in board.pawns for neighbor in chess.SQUARES if board.piece_type_at(neighbor) == chess.PAWN and chess.square_file(square) != chess.square_file(neighbor))
-            if board.turn == chess.WHITE:
-                score += isolated_pawns_score * 20
-            else:
-                score -= isolated_pawns_score * 20
-
-            # Evaluate doubled pawns
-            doubled_pawns_score = sum(1 for square in board.pawns if board.pieces(chess.PAWN, board.turn, square) > 1)
-            if board.turn == chess.WHITE:
-                score += doubled_pawns_score * 10
-            else:
-                score -= doubled_pawns_score * 10
-
-            # Evaluate pawn chains
-            pawn_chains_score = sum(1 for square in board.pawns if chess.square_rank(square) in [2, 3, 4] and all(board.piece_type_at(neighbor) == chess.PAWN for neighbor in chess.SquareSet(chess.pawn_attacks(board.turn, square))))
-            if board.turn == chess.WHITE:
-                score -= pawn_chains_score * 15
-            else:
-                score += pawn_chains_score * 15
-        
             return score
