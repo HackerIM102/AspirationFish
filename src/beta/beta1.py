@@ -1,3 +1,6 @@
+# Alpha Beta Pruning
+# PVS
+
 import chess
 import time
 from eval import Evaluation
