@@ -1,5 +1,3 @@
-# Fastest of all models currently
-# Late move reduction, null move pruning, transposition tables, killer move heuristic, move ordering
 import chess
 import time
 from eval import Evaluation
@@ -14,16 +12,19 @@ transposition_table = {}
 def minimax(board, depth, alpha, beta, maximizing_player):
     # Check transposition table for cached evaluation
     if board.fen() in transposition_table:
-        return transposition_table[board.fen()]
+        cached_eval, cached_move = transposition_table[board.fen()]
+        if depth <= 0:
+            return cached_eval, cached_move
 
     if depth == 0 or board.is_game_over():
         eval = evaluator.evaluate_board(board)
-        transposition_table[board.fen()] = eval
+        transposition_table[board.fen()] = (eval, None)
         print(eval, end="\r")  # Print the current evaluation on the same line
-        return eval
+        return eval, None
 
     if maximizing_player:
         max_eval = float('-inf')
+        best_move = None
         legal_moves = list(board.legal_moves)  # Convert legal_moves to a list
 
         # Sort moves based on move ordering heuristics
@@ -31,21 +32,27 @@ def minimax(board, depth, alpha, beta, maximizing_player):
 
         for move in legal_moves:
             board.push(move)
-            eval = minimax(board, depth - 1, alpha, beta, False)
+            eval, _ = minimax(board, depth - 1, alpha, beta, False)
             board.pop()
-            max_eval = max(max_eval, eval)
+            if eval > max_eval:
+                max_eval = eval
+                best_move = move
             alpha = max(alpha, eval)
             if beta <= alpha:
                 break
 
         # Update killer moves and history moves
-        if max_eval >= beta:
-            killer_moves[depth][move.from_square][move.to_square] = move
-        history_moves[move.from_square][move.to_square] += depth
+        if best_move is not None:
+            killer_moves[depth][best_move.from_square][best_move.to_square] = best_move
+        history_moves[best_move.from_square][best_move.to_square] += depth
 
-        return max_eval
+        # Store the best move in the transposition table
+        transposition_table[board.fen()] = (max_eval, best_move)
+
+        return max_eval, best_move
     else:
         min_eval = float('inf')
+        best_move = None
         legal_moves = list(board.legal_moves)  # Convert legal_moves to a list
 
         # Sort moves based on move ordering heuristics
@@ -53,19 +60,24 @@ def minimax(board, depth, alpha, beta, maximizing_player):
 
         for move in legal_moves:
             board.push(move)
-            eval = minimax(board, depth - 1, alpha, beta, True)
+            eval, _ = minimax(board, depth - 1, alpha, beta, True)
             board.pop()
-            min_eval = min(min_eval, eval)
+            if eval < min_eval:
+                min_eval = eval
+                best_move = move
             beta = min(beta, eval)
             if beta <= alpha:
                 break
 
         # Update killer moves and history moves
-        if min_eval <= alpha:
-            killer_moves[depth][move.from_square][move.to_square] = move
-        history_moves[move.from_square][move.to_square] += depth
+        if best_move is not None:
+            killer_moves[depth][best_move.from_square][best_move.to_square] = best_move
+        history_moves[best_move.from_square][best_move.to_square] += depth
 
-        return min_eval
+        # Store the best move in the transposition table
+        transposition_table[board.fen()] = (min_eval, best_move)
+
+        return min_eval, best_move
 
 def get_best_move(board, depth, alpha, beta):
     best_move = None
@@ -74,7 +86,7 @@ def get_best_move(board, depth, alpha, beta):
     while time.time() - start_time < 1:  # Run for 1 second
         for move in board.legal_moves:
             board.push(move)
-            eval = minimax(board, depth - 1, alpha, beta, False)
+            eval, _ = minimax(board, depth - 1, alpha, beta, False)
             board.pop()
             if eval > max_eval:
                 max_eval = eval
