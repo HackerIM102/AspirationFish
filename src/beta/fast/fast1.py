@@ -1,3 +1,5 @@
+# is now v3
+
 import chess
 import time
 from eval import Evaluation
