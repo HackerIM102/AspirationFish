@@ -24,7 +24,8 @@ For beta version (under development) [best of all versions]
 ```python
 python ../src/beta/[NAME OF MODEL].py
 ```
-replace ".." withe the directory where main.py is located in
+Note that Beta versions contain their own requirements.txt which may defer from the main requirements.txt
+
 # Launching
 ![launch](/img/aspirationfishv2.PNG)
 # Playing a game (will be in ascii notation)
