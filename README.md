@@ -22,7 +22,7 @@ python ../src/v1/main.py
 ```
 For beta version (under development) [best of all versions]
 ```python
-python ../src/beta/[NAME OF MODEL].py
+python ../src/beta/[model folder]/[NAME OF MODEL].py
 ```
 Note that Beta versions contain their own requirements.txt which may defer from the main requirements.txt
 
