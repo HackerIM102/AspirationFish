@@ -1,4 +1,5 @@
 # Fastest of all models currently
+# Late move reduction, null move pruning, transposition tables, killer move heuristic, move ordering
 import chess
 import time
 from eval import Evaluation
